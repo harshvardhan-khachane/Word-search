@@ -21,4 +21,14 @@ public class WordController {
     public ResponseEntity<List<String>> autoComplete(@RequestParam String prefix) {
         return ResponseEntity.ok(wordService.autoComplete(prefix));
     }
+
+    @PostMapping("/search")
+    public ResponseEntity<String> searchWord(@RequestParam String word) {
+        if(wordService.search(word)){
+            wordService.incrementRank(word);
+            return ResponseEntity.ok("Rank Incremented for " + word);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

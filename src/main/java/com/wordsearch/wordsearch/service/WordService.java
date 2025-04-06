@@ -27,4 +27,17 @@ public class WordService {
     public List<String> autoComplete(String prefix) {
         return trie.searchPrefix(prefix);
     }
+
+    // functions to serach word, increment rank and get rank
+    public void incrementRank(String word) {
+        wordRanks.computeIfPresent(word, (k, v) -> v + 1);
+    }
+
+    public int getRank(String word) {
+        return wordRanks.getOrDefault(word, -1);
+    }
+
+    public boolean search(String word) {
+        return wordRanks.containsKey(word);
+    }
 }
