@@ -31,4 +31,10 @@ public class WordController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/rank")
+    public ResponseEntity<Integer> getRank(@RequestParam String word) {
+        int rank = wordService.getRank(word);
+        return rank != -1 ? ResponseEntity.ok(rank) : ResponseEntity.notFound().build();
+    }
 }
