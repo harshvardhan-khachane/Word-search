@@ -3,10 +3,7 @@ package com.wordsearch.wordsearch.service;
 import com.wordsearch.wordsearch.model.Trie;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -25,12 +22,15 @@ public class WordService {
 
     // Function to search words for given prefix
     public List<String> autoComplete(String prefix) {
-        return trie.searchPrefix(prefix);
+        List<String> words = trie.searchPrefix(prefix);
+
+        words.sort(Comparator.comparingInt((String word) -> wordRanks.getOrDefault(word, 0)).reversed());
+        return words;
     }
 
     // Functions to serach word, increment rank and get rank
-    public void incrementRank(String word) {
-        wordRanks.computeIfPresent(word, (k, v) -> v + 1);
+    public int incrementRank(String word) {
+        return wordRanks.computeIfPresent(word, (k, v) -> v + 1);
     }
 
     public int getRank(String word) {

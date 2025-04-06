@@ -1,5 +1,6 @@
 package com.wordsearch.wordsearch.controller;
 
+import com.wordsearch.wordsearch.model.WordRankResponse;
 import com.wordsearch.wordsearch.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +24,15 @@ public class WordController {
     }
 
     @PostMapping("/search")
-    public ResponseEntity<String> searchWord(@RequestParam String word) {
-        if(wordService.search(word)){
-            wordService.incrementRank(word);
-            return ResponseEntity.ok("Rank Incremented for " + word);
+    public ResponseEntity<WordRankResponse> searchWord(@RequestParam String word) {
+        if (wordService.search(word)) {
+            int newRank = wordService.incrementRank(word);
+            WordRankResponse response = new WordRankResponse(
+                    word,
+                    newRank,
+                    "Rank updated successfully"
+            );
+            return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.notFound().build();
         }
