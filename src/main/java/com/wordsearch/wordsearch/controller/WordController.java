@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:5173")
 public class WordController {
     private final WordService wordService;
 
@@ -39,9 +40,18 @@ public class WordController {
     }
 
     @GetMapping("/rank")
-    public ResponseEntity<Integer> getRank(@RequestParam String word) {
+    public ResponseEntity<WordRankResponse> getRank(@RequestParam String word) {
         int rank = wordService.getRank(word);
-        return rank != -1 ? ResponseEntity.ok(rank) : ResponseEntity.notFound().build();
+        if (rank != -1) {
+            WordRankResponse response = new WordRankResponse(
+                    word,
+                    rank,
+                    "Rank retrieved successfully"
+            );
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/insert")
