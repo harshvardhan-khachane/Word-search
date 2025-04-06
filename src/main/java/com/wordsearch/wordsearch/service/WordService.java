@@ -22,4 +22,9 @@ public class WordService {
             wordRanks.put(word, 0);
         });
     }
+
+    // Function to search words for given prefix
+    public List<String> autoComplete(String prefix) {
+        return trie.searchPrefix(prefix);
+    }
 }
