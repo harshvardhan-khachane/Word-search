@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "97ebae15-7bb3-41e1-8897-e853cb030a40",
+		"name": "Word Search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30682799"
+	},
+	"item": [
+		{
+			"name": "Prefix Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/auto-complete?prefix=he",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auto-complete"
+					],
+					"query": [
+						{
+							"key": "prefix",
+							"value": "he"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Word Search",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/search?word=help",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"search"
+					],
+					"query": [
+						{
+							"key": "word",
+							"value": "help"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Rank",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/rank?word=hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"rank"
+					],
+					"query": [
+						{
+							"key": "word",
+							"value": "hello"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Word",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/insert?word=himalaya",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"insert"
+					],
+					"query": [
+						{
+							"key": "word",
+							"value": "himalaya"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
