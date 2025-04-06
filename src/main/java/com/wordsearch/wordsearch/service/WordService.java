@@ -28,7 +28,7 @@ public class WordService {
         return trie.searchPrefix(prefix);
     }
 
-    // functions to serach word, increment rank and get rank
+    // Functions to serach word, increment rank and get rank
     public void incrementRank(String word) {
         wordRanks.computeIfPresent(word, (k, v) -> v + 1);
     }
@@ -39,5 +39,11 @@ public class WordService {
 
     public boolean search(String word) {
         return wordRanks.containsKey(word);
+    }
+
+    // Function to insert a new word
+    public void insertWord(String word) {
+        trie.insert(word);
+        wordRanks.putIfAbsent(word, 0);
     }
 }

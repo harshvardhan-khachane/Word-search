@@ -37,4 +37,10 @@ public class WordController {
         int rank = wordService.getRank(word);
         return rank != -1 ? ResponseEntity.ok(rank) : ResponseEntity.notFound().build();
     }
+
+    @PostMapping("/insert")
+    public ResponseEntity<String> insertWord(@RequestParam String word) {
+        wordService.insertWord(word);
+        return ResponseEntity.ok("Word inserted: " + word);
+    }
 }
