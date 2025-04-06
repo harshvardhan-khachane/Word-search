@@ -21,6 +21,9 @@ public class WordController {
 
     @GetMapping("/auto-complete")
     public ResponseEntity<List<String>> autoComplete(@RequestParam String prefix) {
+        if (prefix.length() > 20) {
+            return ResponseEntity.badRequest().build();
+        }
         return ResponseEntity.ok(wordService.autoComplete(prefix));
     }
 
@@ -56,7 +59,11 @@ public class WordController {
 
     @PostMapping("/insert")
     public ResponseEntity<String> insertWord(@RequestParam String word) {
-        wordService.insertWord(word);
-        return ResponseEntity.ok("Word inserted: " + word);
+        try {
+            wordService.insertWord(word);
+            return ResponseEntity.ok("Word inserted: " + word);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

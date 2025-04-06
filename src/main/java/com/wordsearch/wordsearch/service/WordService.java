@@ -43,6 +43,9 @@ public class WordService {
 
     // Function to insert a new word
     public void insertWord(String word) {
+        if (word.length() > 50) { // Enforce 50-character limit
+            throw new IllegalArgumentException("Word exceeds maximum length of 50 characters");
+        }
         trie.insert(word);
         wordRanks.putIfAbsent(word, 0);
     }

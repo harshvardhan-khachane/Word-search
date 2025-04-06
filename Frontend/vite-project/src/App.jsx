@@ -58,7 +58,8 @@ function App() {
     try {
       const response = await axios.get(`http://localhost:8080/api/rank?word=${word}`);
       setRankResult({
-        text: `"${word}" is ranked #${response.data.rank}`,
+        // text: `"${word}" is ranked #${response.data.rank}`,
+        text: `"Rank of ${word} is ${response.data.rank}`,
         type: 'success'
       });
     } catch (error) {
