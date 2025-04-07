@@ -15,15 +15,16 @@ A Java/Spring Boot backend system for efficient word management, auto-completion
 
 2. **Clone the Repository and Install Dependencies**:
    ```bash
-   git clone https://github.com/yourusername/word-search.git
+   git clone https://github.com/harshvardhan-khachane/word-search.git
    cd word-search
    mvn clean install
    
 3. **Place your `words.txt` file (one word per line, max 50 characters) inside `src/main/resources/` before starting the server.**
+4. **Start backend using `mvn spring-boot:run`**
 
 
 
-4. **Start the Frontend**
+5. **Start the Frontend**
     - Open a new terminal and navigate to the frontend directory
         ```bash
         cd ./Frontend/vite-project
